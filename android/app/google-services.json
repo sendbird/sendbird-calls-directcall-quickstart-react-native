@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "28702742904",
+    "project_id": "sample-reactnative-calls",
+    "storage_bucket": "sample-reactnative-calls.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28702742904:android:379cf2df1da666e4ee508d",
+        "android_client_info": {
+          "package_name": "com.sendbird.calls.reactnative.sample.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28702742904-pa0bb4hpdjhure7ddi4v8p9qiuetphf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqV072kG_4hwIdNpi31IxGcRy4TNRgE6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28702742904-pa0bb4hpdjhure7ddi4v8p9qiuetphf0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28702742904-u59scgl349g6h2u2kdb7m48dtcs2o9v4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sendbird.calls.reactnative.sample.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28702742904:android:25d8f111ed55dd68ee508d",
+        "android_client_info": {
+          "package_name": "com.sendbird.calls.rn.quickstart.directcall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28702742904-pa0bb4hpdjhure7ddi4v8p9qiuetphf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqV072kG_4hwIdNpi31IxGcRy4TNRgE6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28702742904-pa0bb4hpdjhure7ddi4v8p9qiuetphf0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "28702742904-u59scgl349g6h2u2kdb7m48dtcs2o9v4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sendbird.calls.reactnative.sample.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
