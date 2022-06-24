@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Enable camera access so that others can see you during video calls.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Enable microphone access so that others can hear you.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>callapp</string>
+	<string>Quickstart DirectCall</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -39,8 +35,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Enable camera access so that others can see you during video calls.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Enable microphone access so that others can hear you.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>voip</string>
