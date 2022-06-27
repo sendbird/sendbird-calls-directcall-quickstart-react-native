@@ -91,15 +91,40 @@ SendbirdCalls.initialize('SAMPLE_APP_ID');
 
 <br />
 
-## Reference
+## Advanced
 
-For further detail on Sendbird Calls for React-Native, refer to Sendbird Calls SDK for React-Native README.
+### How to integrate background notification
 
-<br />
+### Android
 
-## How to integrate with native module
+#### Remote notification (FCM)
+
+You can handle [Remote Message](https://firebase.google.com/docs/reference/android/com/google/firebase/messaging/FirebaseMessagingService#public-void-onmessagereceived-remotemessage-message) in the Native side,
+or use [`react-native-firebase`](https://github.com/invertase/react-native-firebase) to handle it in Javascript.
+
+```java
+// java
+public class MyFirebaseMessagingService extends FirebaseMessagingService {
+  ...
+  @Override
+  public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+    SendBirdCall.handleFirebaseMessageData(remoteMessage.getData())
+  }
+}
+```
+
+or
+
+```ts
+// typescript
+messaging().setBackgroundMessageHandler(async (message: FirebaseMessagingTypes.RemoteMessage) => {
+  SendbirdCalls.android_handleFirebaseMessageData(message.data);
+});
+```
 
 ### iOS
+
+You should handle notification in the Native side.
 
 import headers to `AppDelegate.m` (or `AppDelegate.mm`)
 
@@ -212,3 +237,9 @@ implement `didReceiveRemoteNotification` to `AppDelegate.m`
   [SBCSendBirdCall application:application didReceiveRemoteNotification:userInfo];
 }
 ```
+
+## Reference
+
+For further detail on Sendbird Calls for React-Native, refer to Sendbird Calls SDK for React-Native README.
+
+<br />
