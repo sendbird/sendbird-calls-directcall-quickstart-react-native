@@ -14,6 +14,7 @@ export const setupCallKit = async () => {
       maximumCallGroups: '1',
       maximumCallsPerCallGroup: '1',
       includesCallsInRecents: true,
+      ringtoneSound: 'ringing.mp3',
     },
     android: {
       alertTitle: 'noop',

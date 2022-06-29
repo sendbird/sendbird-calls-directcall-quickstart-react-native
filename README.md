@@ -93,6 +93,39 @@ SendbirdCalls.initialize('SAMPLE_APP_ID');
 
 ## Advanced
 
+### Sound Effects
+
+You can use different sound effects to enhance the user experience for events that take place while using Sendbird Calls.
+
+To add sound effects, use the SendBirdCall.addDirectCallSound(_:forType:) method for the following events: dialing, ringing, reconnecting, and reconnected. Remember to set sound effects before the mentioned events occur. To remove sound effects, use the SendBirdCall.removeDirectCallSound(_:forType:) method.
+
+```ts
+// Play on a caller’s side when making a call.
+SendbirdCalls.addDirectCallSound(SoundType.DIALING, 'dialing.mp3');
+
+// Play on a callee’s side when receiving a call.
+SendbirdCalls.addDirectCallSound(SoundType.RINGING, 'ringing.mp3');
+
+// Play when a connection is lost, but the SDK immediately attempts to reconnect.
+SendbirdCalls.addDirectCallSound(SoundType.RECONNECTING, 'reconnecting.mp3');
+
+// Play when the connection is re-established.
+SendbirdCalls.addDirectCallSound(SoundType.RECONNECTED, 'reconnected.mp3');
+```
+
+If you’re using Apple’s CallKit framework, you should use ringtoneSound instead to add sound effects as ringtones like the following:
+
+```ts
+RNCallKeep.setup({
+  ios: {
+    // ...
+    ringtoneSound: 'ringing.mp3',
+  },
+});
+```
+
+For more information about sound effects, see the SDK for iOS README for Sound effects.
+
 ### How to integrate background notification
 
 ### Android

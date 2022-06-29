@@ -44,7 +44,10 @@ const DirectCallSettingsScreen = () => {
       nickname={currentUser.nickname}
       profileUrl={currentUser.profileUrl}
       onPressApplicationInformation={() => navigation.navigate(DirectRoutes.APP_INFO)}
-      onPressSignOut={() => Promise.all([unregisterToken(), deauthenticate()])}
+      onPressSignOut={async () => {
+        await unregisterToken();
+        await deauthenticate();
+      }}
     />
   );
 };
