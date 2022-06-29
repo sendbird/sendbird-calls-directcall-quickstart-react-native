@@ -5,7 +5,7 @@
 
 ## Introduction
 
-Sendbird Calls SDK for React-Native is used to initialize, configure, and build voice and video calling functionality into your React-Native client app. In this repository, you will find the steps you need to take before implementing the Calls SDK into a project, and a sample app which contains the code for implementing voice and video call.
+This Sendbird Calls Quickstart for React-Native can be used to initialize, configure, and build voice and video calling functionality into your React-Native client app. In this repository, you will find the steps you need to take before implementing the Calls SDK into a project, as well as a sample app that contains the code for implementing voice and video calling features.
 
 ### More about Sendbird Calls for React-Native
 
@@ -15,11 +15,11 @@ Find out more about Sendbird Calls for React-Native on Calls for React-Native do
 
 ## Before getting started
 
-This section shows you the prerequisites you need for testing Sendbird Calls for React-Native sample app.
+This section outlines the prerequsites for building a sample app using Sendbird Calls for React-Native.
 
 ### Requirements
 
-The minimum requirements for Calls SDK for React-Native sample are:
+The minimum requirements for Sendbird Calls Quickstart for React-Native are as follows:
 
 - React-Native 0.60 +
 - yarn or npm
@@ -27,7 +27,7 @@ The minimum requirements for Calls SDK for React-Native sample are:
 - Android Studio
 - Physical device (Android 21+, iOS 11+)
 
-For more details on **installing and configuring the Calls SDK for React-Native**, refer to Calls for React-Native doc.
+For more details on **installing and configuring the Calls SDK for React-Native**, refer to the documentation Calls for React-Native on sendbird.com/docs.
 
 ### Environment setup
 
@@ -42,8 +42,7 @@ $ npx pod-install
 
 ## Getting started
 
-If you would like to try the sample app specifically fit to your usage, you can do so by following the steps below.
-
+These steps detail how to set up the backend for a Sendbird-enabled application.
 ### Create a Sendbird application
 
 1. Login or Sign-up for an account on [Sendbird Dashboard](https://dashboard.sendbird.com).
@@ -58,22 +57,22 @@ If you would like to try the sample app specifically fit to your usage, you can 
 
 ### Specify the Application ID
 
-To run the sample React-Native app on the Sendbird application specified earlier, your Sendbird application ID must be specified. On the sample client app’s source code, replace `SAMPLE_APP_ID` with `APP_ID` which you can find on your Sendbird application information.
+To link your sample React-Native app to the Sendbird application specified in the previous steps, your newly created Sendbird application ID must be included in the code base. In the sample client app’s source code, replace `SAMPLE_APP_ID` with the application id generated in the first step.
 
 ```ts
 SendbirdCalls.initialize('SAMPLE_APP_ID');
 ```
 
-### Replace app configures
+### Configuring push notifications
 
-1. Replace the `applicationId` and `bundleId` with yours to receive notifications.
-2. Replace the `google-services.json` with yours to receive notifications on Android.
+1. To enable push notifications, replace the `applicationId` (Android Studio) and the `bundleId` (XCode) with the values from your own project.
+2. Download your project’s `google-services.json` from Google Firebase, and replace the default one with it.
 
 ### Build and run the sample app
 
 1. Open IDE (Xcode or Android Studio)
 2. Build and run the sample app on your device.
-3. Install the application onto at least two separate devices for each test user you created earlier.
+3. Install the application onto at least two separate devices for each test created previously.
 4. If two devices are available, repeat these steps to install the sample app on each device.
 
 <br />
@@ -113,7 +112,7 @@ SendbirdCalls.addDirectCallSound(SoundType.RECONNECTING, 'reconnecting.mp3');
 SendbirdCalls.addDirectCallSound(SoundType.RECONNECTED, 'reconnected.mp3');
 ```
 
-If you’re using Apple’s CallKit framework, you should use ringtoneSound instead to add sound effects as ringtones like the following:
+If you’re using Apple’s CallKit framework, use ringtoneSound instead to add sound effects as ringtones.  For example:
 
 ```ts
 RNCallKeep.setup({
@@ -124,7 +123,7 @@ RNCallKeep.setup({
 });
 ```
 
-For more information about sound effects, see the SDK for iOS README for Sound effects.
+For more information about sound effects, see the Sendbird Calls iOS Quickstart [README for Sound effects](https://github.com/sendbird/quickstart-calls-directcall-ios#sound-effects).
 
 ### How to integrate background notification
 
@@ -132,8 +131,8 @@ For more information about sound effects, see the SDK for iOS README for Sound e
 
 #### Remote notification (FCM)
 
-You can handle [Remote Message](https://firebase.google.com/docs/reference/android/com/google/firebase/messaging/FirebaseMessagingService#public-void-onmessagereceived-remotemessage-message) in the Native side,
-or use [`react-native-firebase`](https://github.com/invertase/react-native-firebase) to handle it in Javascript.
+You can either handle [Remote Message](https://firebase.google.com/docs/reference/android/com/google/firebase/messaging/FirebaseMessagingService#public-void-onmessagereceived-remotemessage-message) on the Native side,
+or you can use [`react-native-firebase`](https://github.com/invertase/react-native-firebase) to handle it in Javascript.
 
 ```java
 // java
@@ -157,7 +156,7 @@ messaging().setBackgroundMessageHandler(async (message: FirebaseMessagingTypes.R
 
 ### iOS
 
-You should handle notification in the Native side.
+Handle notifications natively.
 
 import headers to `AppDelegate.m` (or `AppDelegate.mm`)
 
@@ -171,7 +170,7 @@ import headers to `AppDelegate.m` (or `AppDelegate.mm`)
 
 #### VoIP Notification
 
-Before starts, you should install native modules for using [`CallKit`](https://developer.apple.com/documentation/callkit) and [`PushKit`](https://developer.apple.com/documentation/pushkit).<br/>
+Before starting, install native modules for using [`CallKit`](https://developer.apple.com/documentation/callkit) and [`PushKit`](https://developer.apple.com/documentation/pushkit).<br/>
 At this moment, we are using [`react-native-voip-push-notification`](https://github.com/react-native-webrtc/react-native-voip-push-notification) and [`react-native-callkeep`](https://github.com/react-native-webrtc/react-native-callkeep)
 
 implement `PKPushRegistryDelegate` to `AppDelegate.h`
@@ -245,7 +244,7 @@ implement Delegate methods to `AppDelegate.m`
 }
 ```
 
-> `didReceiveIncomingPushWithPayload` is being called after voip registration,
+> `didReceiveIncomingPushWithPayload` is called after voip registration,
 > so you can register voip on the JS side, after set `SendbirdCalls.onRinging` and `RNCallKeep.addListener`
 
 > 0. voip notification wake your app
@@ -273,6 +272,6 @@ implement `didReceiveRemoteNotification` to `AppDelegate.m`
 
 ## Reference
 
-For further detail on Sendbird Calls for React-Native, refer to Sendbird Calls SDK for React-Native README.
+For further detail on Sendbird Calls functions, please refer to Sendbird Calls SDK documentation for [iOS](https://sendbird.com/docs/calls/v1/ios/quickstart/make-first-call) and [Android](https://sendbird.com/docs/calls/v1/android/quickstart/make-first-call).
 
 <br />
