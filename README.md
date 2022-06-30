@@ -5,7 +5,7 @@
 
 ## Introduction
 
-This Sendbird Calls Quickstart for React-Native can be used to initialize, configure, and build voice and video calling functionality into your React-Native client app. In this repository, you will find the steps you need to take before implementing the Calls SDK into a project, as well as a sample app that contains the code for implementing voice and video calling features.
+This Sendbird Calls Quickstart for React-Native can be used to initialize, configure, and build voice and video calling functionality into your React-Native client app. In this readme, you will find the steps you need to take before implementing the Calls SDK into a project, as well as a sample app that contains the code for implementing voice and video calling features.
 
 ### More about Sendbird Calls for React-Native
 
@@ -26,8 +26,9 @@ The minimum requirements for Sendbird Calls Quickstart for React-Native are as f
 - Xcode
 - Android Studio
 - Physical device (Android 21+, iOS 11+)
+- [Sendbird Calls SDK for iOS](https://github.com/sendbird/sendbird-calls-ios)
+- [Sendbird Calls SDK for Android](https://github.com/sendbird/sendbird-calls-android)
 
-For more details on **installing and configuring the Calls SDK for React-Native**, refer to the documentation Calls for React-Native on sendbird.com/docs.
 
 ### Environment setup
 
@@ -63,7 +64,7 @@ To link your sample React-Native app to the Sendbird application specified in th
 SendbirdCalls.initialize('SAMPLE_APP_ID');
 ```
 
-### Configuring push notifications
+### Additional Configuration
 
 1. To enable push notifications, replace the `applicationId` (Android Studio) and the `bundleId` (XCode) with the values from your own project.
 2. Download your project’s `google-services.json` from Google Firebase, and replace the default one with it.
@@ -125,7 +126,7 @@ RNCallKeep.setup({
 
 For more information about sound effects, see the Sendbird Calls iOS Quickstart [README for Sound effects](https://github.com/sendbird/quickstart-calls-directcall-ios#sound-effects).
 
-### How to integrate background notification
+### Add push notifications
 
 ### Android
 
