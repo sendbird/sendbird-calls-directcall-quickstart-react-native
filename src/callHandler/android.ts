@@ -4,8 +4,8 @@ import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messag
 
 import { DirectCallProperties, SendbirdCalls } from '@sendbird/calls-react-native';
 
-import { DirectRouteWithParams, DirectRoutes } from '../navigations/routes';
 import { RunAfterAppReady } from '../libs/StaticNavigation';
+import { DirectRouteWithParams, DirectRoutes } from '../navigations/routes';
 import { AppLogger } from '../utils/logger';
 
 /** Firebase RemoteMessage handler **/
@@ -28,7 +28,9 @@ export async function setNotificationForegroundService() {
 
   // Register notification listeners
   const onNotificationAction = async ({ type, detail }: Event) => {
-    if (type !== EventType.ACTION_PRESS || !detail.notification?.data?.call) return;
+    if (type !== EventType.ACTION_PRESS || !detail.notification?.data?.call) {
+      return;
+    }
 
     const callString = detail.notification.data.call;
     const callProps: DirectCallProperties = JSON.parse(callString);

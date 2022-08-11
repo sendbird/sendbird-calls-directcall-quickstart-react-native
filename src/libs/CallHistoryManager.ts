@@ -1,9 +1,9 @@
 import { DirectCallEndResult, DirectCallLog, DirectCallUser, DirectCallUserRole } from '@sendbird/calls-react-native';
-
-import { createStorage, SimpleStorage } from './createStorage';
-import JSEventEmitterType from '@sendbird/calls-react-native/lib/typescript/src/libs/JSEventEmitter';
 //@ts-ignore
 import JSEventEmitter from '@sendbird/calls-react-native/lib/module/libs/JSEventEmitter';
+import JSEventEmitterType from '@sendbird/calls-react-native/lib/typescript/src/libs/JSEventEmitter';
+
+import { SimpleStorage, createStorage } from './createStorage';
 
 export interface CallHistory {
   callId: string;
@@ -24,13 +24,27 @@ export const asHistory = (log: DirectCallLog): CallHistory => {
   const me = isOutgoing ? log.caller : log.callee;
 
   const duration = (() => {
-    if (log.endResult === DirectCallEndResult.DECLINED) return '0s';
-    if (log.endResult === DirectCallEndResult.CANCELED) return '0s';
-    if (log.endResult === DirectCallEndResult.OTHER_DEVICE_ACCEPTED) return '0s';
-    if (log.endResult === DirectCallEndResult.ACCEPT_FAILED) return '0s';
-    if (log.endResult === DirectCallEndResult.DIAL_FAILED) return '0s';
-    if (log.endResult === DirectCallEndResult.NO_ANSWER) return '0s';
-    if (log.endResult === DirectCallEndResult.TIMED_OUT) return '0s';
+    if (log.endResult === DirectCallEndResult.DECLINED) {
+      return '0s';
+    }
+    if (log.endResult === DirectCallEndResult.CANCELED) {
+      return '0s';
+    }
+    if (log.endResult === DirectCallEndResult.OTHER_DEVICE_ACCEPTED) {
+      return '0s';
+    }
+    if (log.endResult === DirectCallEndResult.ACCEPT_FAILED) {
+      return '0s';
+    }
+    if (log.endResult === DirectCallEndResult.DIAL_FAILED) {
+      return '0s';
+    }
+    if (log.endResult === DirectCallEndResult.NO_ANSWER) {
+      return '0s';
+    }
+    if (log.endResult === DirectCallEndResult.TIMED_OUT) {
+      return '0s';
+    }
 
     const [h, m, s] = new Date(log.duration).toISOString().substring(11, 19).split(':');
     const hms = Object.entries({ h, m, s });
@@ -63,8 +77,12 @@ class CallHistoryManager {
     this._userId = userId;
 
     const data = await this._storage.get();
-    if (data) this._historyAll = data;
-    if (!this._historyAll[this._userId]) this._historyAll[this._userId] = [];
+    if (data) {
+      this._historyAll = data;
+    }
+    if (!this._historyAll[this._userId]) {
+      this._historyAll[this._userId] = [];
+    }
   }
 
   public async get() {
@@ -73,7 +91,9 @@ class CallHistoryManager {
   }
 
   public add(callId: string, log: DirectCallLog) {
-    if (!this._userId) return;
+    if (!this._userId) {
+      return;
+    }
     const history = asHistory(log);
     const histories = this._historyAll[this._userId];
     if (histories?.some((x) => x.callId === callId)) {

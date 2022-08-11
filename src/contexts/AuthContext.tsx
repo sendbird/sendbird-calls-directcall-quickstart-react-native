@@ -6,7 +6,7 @@ import CallHistoryManager from '../libs/CallHistoryManager';
 import type { ChildrenProps } from '../types/props';
 
 const AuthContext = createContext<{ currentUser?: User; setCurrentUser: Dispatch<SetStateAction<User | undefined>> }>({
-  setCurrentUser: () => {},
+  setCurrentUser: (x) => x,
 });
 
 export const useAuthContext = () => useContext(AuthContext);

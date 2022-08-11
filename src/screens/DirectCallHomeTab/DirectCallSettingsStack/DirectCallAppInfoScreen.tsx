@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { SendbirdCalls } from '@sendbird/calls-react-native';
+
 import SBText from '../../../components/SBText';
 import Palette from '../../../styles/palette';
 

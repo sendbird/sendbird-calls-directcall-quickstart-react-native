@@ -1,4 +1,4 @@
-import { createStorage, SimpleStorage } from './createStorage';
+import { SimpleStorage, createStorage } from './createStorage';
 
 interface Credential {
   userId: string;
@@ -9,9 +9,13 @@ class AuthManager {
   private _credential: Credential | null = null;
 
   async getSavedCredential() {
-    if (this._credential) return this._credential;
+    if (this._credential) {
+      return this._credential;
+    }
     const cred = await this._storage.get();
-    if (cred) this._credential = cred;
+    if (cred) {
+      this._credential = cred;
+    }
     return this._credential;
   }
   isAuthenticated() {

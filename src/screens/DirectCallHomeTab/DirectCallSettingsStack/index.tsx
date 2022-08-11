@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
+import Header, { HeaderLeftTypes } from '../../../components/Header';
 import { DirectRoutes } from '../../../navigations/routes';
 import DirectCallAppInfoScreen from './DirectCallAppInfoScreen';
 import DirectCallSettingsScreen from './DirectCallSettingsScreen';
-import Header, { HeaderLeftTypes } from '../../../components/Header';
 
 const Stack = createNativeStackNavigator();
 

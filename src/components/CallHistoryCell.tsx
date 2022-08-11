@@ -1,11 +1,12 @@
 import dayjs from 'dayjs';
 import React, { FC, useMemo } from 'react';
 import { Image, Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
-import SBText from './SBText';
+
 import IconAssets from '../assets';
-import Palette from '../styles/palette';
 import { CallHistory } from '../libs/CallHistoryManager';
+import Palette from '../styles/palette';
 import SBIcon, { IconNames } from './SBIcon';
+import SBText from './SBText';
 
 const CallHistoryCell: FC<{ history: CallHistory; onDial: (userId: string, isVideoCall: boolean) => void }> = ({
   history,
@@ -58,8 +59,12 @@ const CallHistoryCell: FC<{ history: CallHistory; onDial: (userId: string, isVid
                   <SBIcon
                     size={32}
                     icon={(() => {
-                      if (!history.remoteUser) return 'btnCallVideoTertiaryDisabled';
-                      if (pressed) return 'btnCallVideoTertiaryPressed';
+                      if (!history.remoteUser) {
+                        return 'btnCallVideoTertiaryDisabled';
+                      }
+                      if (pressed) {
+                        return 'btnCallVideoTertiaryPressed';
+                      }
                       return 'btnCallVideoTertiary';
                     })()}
                   />
@@ -75,8 +80,12 @@ const CallHistoryCell: FC<{ history: CallHistory; onDial: (userId: string, isVid
                   <SBIcon
                     size={32}
                     icon={(() => {
-                      if (!history.remoteUser) return 'btnCallVoiceTertiaryDisabled';
-                      if (pressed) return 'btnCallVoiceTertiaryPressed';
+                      if (!history.remoteUser) {
+                        return 'btnCallVoiceTertiaryDisabled';
+                      }
+                      if (pressed) {
+                        return 'btnCallVoiceTertiaryPressed';
+                      }
                       return 'btnCallVoiceTertiary';
                     })()}
                   />

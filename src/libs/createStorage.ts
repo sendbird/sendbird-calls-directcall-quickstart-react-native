@@ -9,8 +9,11 @@ export const createStorage = <T>(key: string, stringify = true): SimpleStorage<T
   async get(): Promise<T | null> {
     const item = await AsyncStorage.getItem(key);
     if (item) {
-      if (stringify) return JSON.parse(item);
-      else return item as unknown as T;
+      if (stringify) {
+        return JSON.parse(item);
+      } else {
+        return item as unknown as T;
+      }
     } else {
       return null;
     }

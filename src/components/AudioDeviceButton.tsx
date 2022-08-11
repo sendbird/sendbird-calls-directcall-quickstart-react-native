@@ -33,7 +33,9 @@ const AudioDeviceButton: FC<Props> = ({
       // return ios_currentAudioDevice.outputs[0]?.type === AVAudioSessionPort.builtInSpeaker;
     }
     if (Platform.OS === 'android') {
-      if (availableAudioDevicesAndroid.length === 0) return true;
+      if (availableAudioDevicesAndroid.length === 0) {
+        return true;
+      }
       // return android_currentAudioDevice === AudioDeviceType.SPEAKERPHONE;
     }
     return false;

@@ -4,14 +4,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AudioDeviceRoute, DirectCall, DirectCallUserRole } from '@sendbird/calls-react-native';
 
+import IconAssets from '../assets';
 import { DirectCallStatus } from '../hooks/useDirectCall';
 import { useDirectCallDuration } from '../hooks/useDirectCallDuration';
-import SBText from './SBText';
-import Palette from '../styles/palette';
-import IconAssets from '../assets';
-import AudioDeviceButton from './AudioDeviceButton';
 import { useIIFE } from '../hooks/useEffectAsync';
+import Palette from '../styles/palette';
+import AudioDeviceButton from './AudioDeviceButton';
 import SBIcon from './SBIcon';
+import SBText from './SBText';
 
 type ControllerViewProps = {
   status: DirectCallStatus;
@@ -95,8 +95,11 @@ const DirectCallControllerView: FC<ControllerViewProps> = ({ status, call, ios_a
               <Pressable
                 style={styles.bottomButton}
                 onPress={() => {
-                  if (call.isLocalAudioEnabled) call.muteMicrophone();
-                  else call.unmuteMicrophone();
+                  if (call.isLocalAudioEnabled) {
+                    call.muteMicrophone();
+                  } else {
+                    call.unmuteMicrophone();
+                  }
                 }}
               >
                 <SBIcon icon={call.isLocalAudioEnabled ? 'btnAudioOff' : 'btnAudioOffSelected'} size={64} />
@@ -105,8 +108,11 @@ const DirectCallControllerView: FC<ControllerViewProps> = ({ status, call, ios_a
                 <Pressable
                   style={styles.bottomButton}
                   onPress={() => {
-                    if (call.isLocalVideoEnabled) call.stopVideo();
-                    else call.startVideo();
+                    if (call.isLocalVideoEnabled) {
+                      call.stopVideo();
+                    } else {
+                      call.startVideo();
+                    }
                   }}
                 >
                   <SBIcon icon={call.isLocalVideoEnabled ? 'btnVideoOff' : 'btnVideoOffSelected'} size={64} />

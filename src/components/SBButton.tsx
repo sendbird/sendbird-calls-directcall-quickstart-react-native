@@ -55,8 +55,12 @@ const SBButton: React.FC<Props> = ({
 }) => {
   const getStateColor = (pressed: boolean, disabled?: boolean) => {
     const buttonStyle = buttonStyles[variant];
-    if (disabled) return buttonStyle.disabled;
-    if (pressed) return buttonStyle.pressed;
+    if (disabled) {
+      return buttonStyle.disabled;
+    }
+    if (pressed) {
+      return buttonStyle.pressed;
+    }
     return buttonStyle.enabled;
   };
 

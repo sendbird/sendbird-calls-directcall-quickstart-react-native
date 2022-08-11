@@ -4,15 +4,15 @@ import { Alert, FlatList, View } from 'react-native';
 import { DirectCallProperties, SendbirdCalls } from '@sendbird/calls-react-native';
 
 import CallHistoryCell from '../../components/CallHistoryCell';
+import Loading from '../../components/Loading';
+import SBIcon from '../../components/SBIcon';
+import SBText from '../../components/SBText';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { useRemoteHistory } from '../../hooks/useCallHistory';
 import { DirectRoutes } from '../../navigations/routes';
 import { useDirectNavigation } from '../../navigations/useDirectNavigation';
-import SBText from '../../components/SBText';
 import Palette from '../../styles/palette';
-import Loading from '../../components/Loading';
 import { AppLogger } from '../../utils/logger';
-import { useAuthContext } from '../../contexts/AuthContext';
-import SBIcon from '../../components/SBIcon';
 
 const DirectCallHistoryScreen = () => {
   const { currentUser } = useAuthContext();
@@ -21,7 +21,9 @@ const DirectCallHistoryScreen = () => {
   // const { onRefresh, refreshing, history, loading } = useLocalHistory();
   const { onRefresh, refreshing, history, loading, onEndReached } = useRemoteHistory();
 
-  if (!currentUser) return null;
+  if (!currentUser) {
+    return null;
+  }
 
   const onNavigate = (callProps: DirectCallProperties) => {
     if (callProps.isVideoCall) {

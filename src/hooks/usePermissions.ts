@@ -6,7 +6,9 @@ import Permissions, { PERMISSIONS } from 'react-native-permissions';
 type PermissionResults = Record<Permission, PermissionStatus>;
 const nativePermissionGranted = (stats: PermissionResults, limitedCallback?: () => void) => {
   return Object.values(stats).every((result) => {
-    if (result === 'granted') return true;
+    if (result === 'granted') {
+      return true;
+    }
     if (result === 'limited') {
       limitedCallback?.();
       return true;
@@ -27,7 +29,9 @@ export const usePermissions = (perms: Permission[]) => {
     const checkAndRequest = async () => {
       const checkResult = await Permissions.checkMultiple(perms);
       const alreadyGranted = nativePermissionGranted(checkResult);
-      if (alreadyGranted) return setState('granted');
+      if (alreadyGranted) {
+        return setState('granted');
+      }
 
       const requestResult = await Permissions.requestMultiple(perms);
       const isGranted = nativePermissionGranted(requestResult);

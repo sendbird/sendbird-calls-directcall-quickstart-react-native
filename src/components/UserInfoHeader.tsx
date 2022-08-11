@@ -2,11 +2,11 @@ import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import IconAssets from '../assets';
+import { DEFAULT_HEADER_HEIGHT } from '../constants';
 import { useAuthContext } from '../contexts/AuthContext';
 import Palette from '../styles/palette';
 import SBText from './SBText';
-import IconAssets from '../assets';
-import { DEFAULT_HEADER_HEIGHT } from '../constants';
 
 const UserInfoHeader = () => {
   const { top } = useSafeAreaInsets();

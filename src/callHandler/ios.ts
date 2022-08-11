@@ -2,8 +2,8 @@ import RNCallKeep from 'react-native-callkeep';
 
 import { DirectCallProperties, SendbirdCalls } from '@sendbird/calls-react-native';
 
-import { DirectRoutes, DirectRouteWithParams } from '../navigations/routes';
 import { RunAfterAppReady } from '../libs/StaticNavigation';
+import { DirectRouteWithParams, DirectRoutes } from '../navigations/routes';
 import { AppLogger } from '../utils/logger';
 
 export const setupCallKit = async () => {

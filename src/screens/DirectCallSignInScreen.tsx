@@ -4,12 +4,13 @@ import { Platform, ScrollView } from 'react-native';
 import RNVoipPushNotification from 'react-native-voip-push-notification';
 
 import { SendbirdCalls } from '@sendbird/calls-react-native';
+
+import SignInForm from '../components/SignInForm';
 import { useAuthContext } from '../contexts/AuthContext';
 import { useLayoutEffectAsync } from '../hooks/useEffectAsync';
 import AuthManager from '../libs/AuthManager';
-import { AppLogger } from '../utils/logger';
 import TokenManager from '../libs/TokenManager';
-import SignInForm from '../components/SignInForm';
+import { AppLogger } from '../utils/logger';
 
 type Input = {
   userId: string;
@@ -24,7 +25,9 @@ const DirectCallSignInScreen = () => {
 
   useLayoutEffectAsync(async () => {
     const credential = await AuthManager.getSavedCredential();
-    if (credential) onSignIn(credential);
+    if (credential) {
+      onSignIn(credential);
+    }
   }, []);
 
   const authenticate = async (value: Input) => {

@@ -2,18 +2,20 @@ import React from 'react';
 
 import { SendbirdCalls } from '@sendbird/calls-react-native';
 
-import { DirectRoutes } from '../../../navigations/routes';
-import { useDirectNavigation } from '../../../navigations/useDirectNavigation';
+import SettingsView from '../../../components/SettingsView';
+import { useAuthContext } from '../../../contexts/AuthContext';
 import AuthManager from '../../../libs/AuthManager';
 import TokenManager from '../../../libs/TokenManager';
-import { useAuthContext } from '../../../contexts/AuthContext';
-import SettingsView from '../../../components/SettingsView';
+import { DirectRoutes } from '../../../navigations/routes';
+import { useDirectNavigation } from '../../../navigations/useDirectNavigation';
 
 const DirectCallSettingsScreen = () => {
   const { navigation } = useDirectNavigation<DirectRoutes.SETTINGS>();
   const { currentUser, setCurrentUser } = useAuthContext();
 
-  if (!currentUser) return null;
+  if (!currentUser) {
+    return null;
+  }
 
   const unregisterToken = async () => {
     const token = await TokenManager.get();

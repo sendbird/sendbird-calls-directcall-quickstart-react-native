@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 
 import { SendbirdCalls } from '@sendbird/calls-react-native';
+
 import { useEffectAsync } from './useEffectAsync';
 
 export const useDirectCallDuration = (callId: string, interval = 1000) => {
@@ -8,7 +9,9 @@ export const useDirectCallDuration = (callId: string, interval = 1000) => {
   const mountRef = useRef(true);
 
   useEffectAsync(() => {
-    if (!callId) return;
+    if (!callId) {
+      return;
+    }
 
     const timer = setInterval(async () => {
       SendbirdCalls.getDirectCall(callId)

@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 
 import { DirectCallEndResult, DirectCallLogListQuery, SendbirdCalls } from '@sendbird/calls-react-native';
-import CallHistoryManager, { asHistory, CallHistory } from '../libs/CallHistoryManager';
+
+import CallHistoryManager, { CallHistory, asHistory } from '../libs/CallHistoryManager';
 import { useEffectAsync } from './useEffectAsync';
 
 export const useLocalHistory = () => {

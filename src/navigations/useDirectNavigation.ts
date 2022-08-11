@@ -1,8 +1,8 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import type { DirectRouteWithParams, DirectRoutes } from './routes';
 import { AsParamListBase } from '../types/navigations';
+import type { DirectRouteWithParams, DirectRoutes } from './routes';
 
 export type DirectParamListBase = AsParamListBase<DirectRouteWithParams>;
 export type DirectRouteProp<T extends DirectRoutes> = RouteProp<DirectParamListBase, T>;

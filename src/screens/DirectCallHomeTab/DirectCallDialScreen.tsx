@@ -3,13 +3,13 @@ import { Alert, Keyboard, Platform, Pressable, StyleSheet, TouchableOpacity, Vie
 
 import { DirectCallProperties, SendbirdCalls } from '@sendbird/calls-react-native';
 
-import { DirectRoutes } from '../../navigations/routes';
-import { useDirectNavigation } from '../../navigations/useDirectNavigation';
+import SBIcon from '../../components/SBIcon';
 import SBText from '../../components/SBText';
 import SBTextInput from '../../components/SBTextInput';
-import { AppLogger } from '../../utils/logger';
 import { useStates } from '../../hooks/useStates';
-import SBIcon from '../../components/SBIcon';
+import { DirectRoutes } from '../../navigations/routes';
+import { useDirectNavigation } from '../../navigations/useDirectNavigation';
+import { AppLogger } from '../../utils/logger';
 
 const DirectCallScreen = () => {
   const { navigation } = useDirectNavigation<DirectRoutes.DIAL>();

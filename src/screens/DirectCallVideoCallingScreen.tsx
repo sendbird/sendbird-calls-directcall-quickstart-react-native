@@ -20,7 +20,9 @@ const DirectCallVideoCallingScreen = () => {
     }
   }, [status]);
 
-  if (!call) return null;
+  if (!call) {
+    return null;
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: Palette.background500 }}>

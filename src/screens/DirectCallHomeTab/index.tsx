@@ -1,14 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
+import Header from '../../components/Header';
+import SBIcon from '../../components/SBIcon';
+import UserInfoHeader from '../../components/UserInfoHeader';
 import { DirectRoutes } from '../../navigations/routes';
+import Palette from '../../styles/palette';
 import DirectCallDialScreen from './DirectCallDialScreen';
 import DirectCallHistoryScreen from './DirectCallHistoryScreen';
 import DirectCallSettingsStack from './DirectCallSettingsStack';
-import Palette from '../../styles/palette';
-import Header from '../../components/Header';
-import UserInfoHeader from '../../components/UserInfoHeader';
-import SBIcon from '../../components/SBIcon';
 
 const Tab = createBottomTabNavigator();
 
