@@ -31,10 +31,10 @@ const DirectCallSignInScreen = () => {
   }, []);
 
   const authenticate = async (value: Input) => {
-    const user = await SendbirdCalls.authenticate(value.userId, value.accessToken);
+    const user = await SendbirdCalls.authenticate(value);
     await AuthManager.authenticate(value);
 
-    AppLogger.log('sendbird user:', user);
+    AppLogger.info('sendbird user:', user);
     return user;
   };
 
@@ -45,7 +45,7 @@ const DirectCallSignInScreen = () => {
         SendbirdCalls.registerPushToken(token, true),
         TokenManager.set({ value: token, type: 'fcm' }),
       ]);
-      AppLogger.log('registered token:', TokenManager.token);
+      AppLogger.info('registered token:', TokenManager.token);
     }
 
     if (Platform.OS === 'ios') {
@@ -55,7 +55,7 @@ const DirectCallSignInScreen = () => {
           TokenManager.set({ value: voipToken, type: 'voip' }),
         ]);
         RNVoipPushNotification.removeEventListener('register');
-        AppLogger.log('registered token:', TokenManager.token);
+        AppLogger.info('registered token:', TokenManager.token);
       });
       RNVoipPushNotification.registerVoipToken();
     }

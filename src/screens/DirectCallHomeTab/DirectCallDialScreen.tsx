@@ -33,7 +33,7 @@ const DirectCallScreen = () => {
   const calling = async (isVideoCall: boolean) => {
     try {
       const callProps = await SendbirdCalls.dial(state.userId, isVideoCall);
-      AppLogger.log('dial called', callProps.callId);
+      AppLogger.info('dial called', callProps.callId);
       onNavigate(callProps);
     } catch (e) {
       // @ts-ignore

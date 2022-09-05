@@ -31,7 +31,7 @@ export const setupCallKit = async () => {
 export const setupCallKitListeners = () => {
   RNCallKeep.addEventListener('answerCall', async ({ callUUID }) => {
     const directCall = await SendbirdCalls.getDirectCall(callUUID);
-    AppLogger.debug('[CALL START]', directCall.callId);
+    AppLogger.info('[CALL START]', directCall.callId);
     RunAfterAppReady<DirectRoutes, DirectRouteWithParams>((navigation) => {
       if (directCall.isVideoCall) {
         navigation.navigate(DirectRoutes.VIDEO_CALLING, { callId: directCall.callId });
@@ -44,7 +44,7 @@ export const setupCallKitListeners = () => {
 
   RNCallKeep.addEventListener('endCall', async ({ callUUID }) => {
     const directCall = await SendbirdCalls.getDirectCall(callUUID);
-    AppLogger.debug('[CALL END]', directCall.callId);
+    AppLogger.info('[CALL END]', directCall.callId);
     await directCall.end();
   });
 
@@ -56,7 +56,7 @@ export const setupCallKitListeners = () => {
 
 export const startRingingWithCallKit = async (props: DirectCallProperties) => {
   if (props.remoteUser && props.ios_callUUID) {
-    AppLogger.debug('[startRingingWithCallKit] Report incoming call');
+    AppLogger.info('[startRingingWithCallKit] Report incoming call');
     const uuid = props.ios_callUUID;
     const remoteUser = props.remoteUser;
     const directCall = await SendbirdCalls.getDirectCall(props.callId);
@@ -64,7 +64,7 @@ export const startRingingWithCallKit = async (props: DirectCallProperties) => {
     const unsubscribeCallKit = setupCallKitListeners();
     const unsubscribeDirectCall = directCall.addListener({
       onEnded({ callLog }) {
-        AppLogger.debug('[startRingingWithCallKit]', 'onEnded');
+        AppLogger.info('[startRingingWithCallKit]', 'onEnded');
         RNCallKeep.endAllCalls();
         if (callLog?.endedBy?.userId === remoteUser.userId) {
           RNCallKeep.reportEndCallWithUUID(uuid, 2);

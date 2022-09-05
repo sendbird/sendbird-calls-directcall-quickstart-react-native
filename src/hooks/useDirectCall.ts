@@ -34,7 +34,7 @@ export const useDirectCall = (callId: string) => {
         setStatus('connected');
       },
       onEnded({ callId, callLog }) {
-        AppLogger.debug('[useDirectCall/onEnded] add to call history manager');
+        AppLogger.info('[useDirectCall/onEnded] add to call history manager');
         callLog && CallHistoryManager.add(callId, callLog);
         setStatus('ended');
       },

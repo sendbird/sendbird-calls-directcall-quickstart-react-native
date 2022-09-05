@@ -36,7 +36,7 @@ const DirectCallHistoryScreen = () => {
   const onDial = useCallback(async (userId: string, isVideoCall: boolean) => {
     try {
       const callProps = await SendbirdCalls.dial(userId, isVideoCall);
-      AppLogger.log('DIAL CALLED', callProps.callId);
+      AppLogger.info('DIAL CALLED', callProps.callId);
       onNavigate(callProps);
     } catch (e) {
       // @ts-ignore

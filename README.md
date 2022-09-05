@@ -44,6 +44,7 @@ $ npx pod-install
 ## Getting started
 
 These steps detail how to set up the backend for a Sendbird-enabled application.
+
 ### Create a Sendbird application
 
 1. Login or Sign-up for an account on [Sendbird Dashboard](https://dashboard.sendbird.com).
@@ -246,13 +247,13 @@ implement Delegate methods to `AppDelegate.m`
 ```
 
 > `didReceiveIncomingPushWithPayload` is called after voip registration,
-> so you can register voip on the JS side, after set `SendbirdCalls.onRinging` and `RNCallKeep.addListener`
+> so you can register voip on the JS side, after set `SendbirdCallListener.onRinging` and `RNCallKeep.addListener`
 
 > 0. voip notification wake your app
 > 1. [Native] App started
 > 2. [JS] JS bridge created and your React-Native app is mounted
 > 3. [JS] call SendbirdCalls.initialize()
-> 4. [JS] set SendbirdCalls.onRinging
+> 4. [JS] set SendbirdCalls.setListener({onRinging})
 > 5. [JS] set RNCallKeep.addListener
 > 6. [JS] RNVoipPushNotification.registerVoipToken() >> it means register voip
 > 7. [Native] didReceiveIncomingPushWithPayload called

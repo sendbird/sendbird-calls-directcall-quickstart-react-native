@@ -1645,8 +1645,8 @@
     nanoid "^3.1.23"
 
 "@sendbird/calls-react-native@sendbird/sendbird-calls-react-native":
-  version "0.2.0"
-  resolved "git+ssh://git@github.com/sendbird/sendbird-calls-react-native.git#8f11a68a2151c3a1934fe2cb3d55c8e5fa20c3e9"
+  version "1.0.0-rc.0"
+  resolved "git+ssh://git@github.com/sendbird/sendbird-calls-react-native.git#e1835ec8e4b427818ef92b76a23bcc1e20d6e5d0"
 
 "@sideway/address@^4.1.3":
   version "4.1.4"

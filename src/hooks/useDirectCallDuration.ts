@@ -1,29 +1,20 @@
-import { useRef, useState } from 'react';
-
-import { SendbirdCalls } from '@sendbird/calls-react-native';
+import { DirectCallProperties } from '@sendbird/calls-react-native';
 
 import { useEffectAsync } from './useEffectAsync';
+import { useForceUpdate } from './useForceUpdate';
 
-export const useDirectCallDuration = (callId: string, interval = 1000) => {
-  const [duration, setDuration] = useState(0);
-  const mountRef = useRef(true);
+export const useDirectCallDuration = (call: DirectCallProperties, interval = 1000) => {
+  const forceUpdate = useForceUpdate();
 
   useEffectAsync(() => {
-    if (!callId) {
-      return;
-    }
-
     const timer = setInterval(async () => {
-      SendbirdCalls.getDirectCall(callId)
-        .then(({ duration: d }) => mountRef.current && setDuration(d))
-        .catch();
+      forceUpdate();
     }, interval);
 
     return () => {
-      mountRef.current = false;
       clearInterval(timer);
     };
-  }, [callId, interval]);
+  }, [call, interval]);
 
-  return duration;
+  return new Date(call.duration).toISOString().substring(11, 19);
 };

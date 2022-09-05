@@ -42,7 +42,7 @@ export async function setNotificationForegroundService() {
     }
 
     if (detail.pressAction?.id === 'accept') {
-      AppLogger.debug('[CALL START]', directCall.callId);
+      AppLogger.info('[CALL START]', directCall.callId);
       RunAfterAppReady<DirectRoutes, DirectRouteWithParams>((navigation) => {
         if (directCall.isVideoCall) {
           navigation.navigate(DirectRoutes.VIDEO_CALLING, { callId: directCall.callId });

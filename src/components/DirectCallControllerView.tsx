@@ -7,7 +7,6 @@ import { AudioDeviceRoute, DirectCall, DirectCallUserRole } from '@sendbird/call
 import IconAssets from '../assets';
 import { DirectCallStatus } from '../hooks/useDirectCall';
 import { useDirectCallDuration } from '../hooks/useDirectCallDuration';
-import { useIIFE } from '../hooks/useEffectAsync';
 import Palette from '../styles/palette';
 import AudioDeviceButton from './AudioDeviceButton';
 import SBIcon from './SBIcon';
@@ -144,11 +143,10 @@ const DirectCallControllerView: FC<ControllerViewProps> = ({ status, call, ios_a
 };
 
 const StatusView = ({ call, statusInProgress }: { call: DirectCall; statusInProgress: boolean }) => {
-  const seconds = useDirectCallDuration(call.callId);
-  const timer = useIIFE(() => new Date(seconds).toISOString().substring(11, 19));
+  const seconds = useDirectCallDuration(call);
   return (
     <SBText color={Palette.onBackgroundDark01} body3>
-      {statusInProgress ? timer : call.endResult}
+      {statusInProgress ? seconds : call.endResult}
     </SBText>
   );
 };

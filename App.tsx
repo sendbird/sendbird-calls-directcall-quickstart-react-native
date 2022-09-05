@@ -1,26 +1,28 @@
-import React from 'react';
-import { SendbirdCalls, SoundType } from '@sendbird/calls-react-native';
-import { AuthProvider, useAuthContext } from './src/contexts/AuthContext';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
-import Palette from './src/styles/palette';
-import { Platform, StatusBar } from 'react-native';
-import { navigationRef } from './src/libs/StaticNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import DirectCallVoiceCallingScreen from './src/screens/DirectCallVoiceCallingScreen';
-import DirectCallHomeTab from './src/screens/DirectCallHomeTab';
-import { DirectRoutes } from './src/navigations/routes';
-import DirectCallSignInScreen from './src/screens/DirectCallSignInScreen';
-import DirectCallVideoCallingScreen from './src/screens/DirectCallVideoCallingScreen';
+import React from 'react';
+import { Platform, StatusBar } from 'react-native';
+
+import { SendbirdCalls, SoundType } from '@sendbird/calls-react-native';
+
 import {
   setFirebaseMessageHandlers,
   setNotificationForegroundService,
   startRingingWithNotification,
 } from './src/callHandler/android';
-import CallHistoryManager from './src/libs/CallHistoryManager';
-import AuthManager from './src/libs/AuthManager';
 import { setupCallKit, startRingingWithCallKit } from './src/callHandler/ios';
-import { AppLogger } from './src/utils/logger';
+import { AuthProvider, useAuthContext } from './src/contexts/AuthContext';
 import { CALL_PERMISSIONS, usePermissions } from './src/hooks/usePermissions';
+import AuthManager from './src/libs/AuthManager';
+import CallHistoryManager from './src/libs/CallHistoryManager';
+import { navigationRef } from './src/libs/StaticNavigation';
+import { DirectRoutes } from './src/navigations/routes';
+import DirectCallHomeTab from './src/screens/DirectCallHomeTab';
+import DirectCallSignInScreen from './src/screens/DirectCallSignInScreen';
+import DirectCallVideoCallingScreen from './src/screens/DirectCallVideoCallingScreen';
+import DirectCallVoiceCallingScreen from './src/screens/DirectCallVoiceCallingScreen';
+import Palette from './src/styles/palette';
+import { AppLogger } from './src/utils/logger';
 
 // SendbirdCalls.Logger.setLogLevel('debug');
 SendbirdCalls.initialize('SAMPLE_APP_ID');
@@ -46,36 +48,38 @@ if (Platform.OS === 'ios') {
 }
 
 // Setup onRinging
-SendbirdCalls.onRinging(async (call) => {
-  const directCall = await SendbirdCalls.getDirectCall(call.callId);
+SendbirdCalls.setListener({
+  onRinging: async (call) => {
+    const directCall = await SendbirdCalls.getDirectCall(call.callId);
 
-  if (!SendbirdCalls.currentUser) {
-    const credential = await AuthManager.getSavedCredential();
+    if (!SendbirdCalls.currentUser) {
+      const credential = await AuthManager.getSavedCredential();
 
-    if (credential) {
-      // Authenticate before accept
-      await SendbirdCalls.authenticate(credential.userId, credential.accessToken);
-    } else {
-      // Invalid user call
-      return directCall.end();
+      if (credential) {
+        // Authenticate before accept
+        await SendbirdCalls.authenticate(credential);
+      } else {
+        // Invalid user call
+        return directCall.end();
+      }
     }
-  }
 
-  const unsubscribe = directCall.addListener({
-    onEnded({ callId, callLog }) {
-      AppLogger.debug('[onRinging/onEnded] add to call history manager');
-      callLog && CallHistoryManager.add(callId, callLog);
-      unsubscribe();
-    },
-  });
+    const unsubscribe = directCall.addListener({
+      onEnded({ callId, callLog }) {
+        AppLogger.info('[onRinging/onEnded] add to call history manager');
+        callLog && CallHistoryManager.add(callId, callLog);
+        unsubscribe();
+      },
+    });
 
-  // Show interaction UI (Accept/Decline)
-  if (Platform.OS === 'android') {
-    await startRingingWithNotification(call);
-  }
-  if (Platform.OS === 'ios') {
-    await startRingingWithCallKit(call);
-  }
+    // Show interaction UI (Accept/Decline)
+    if (Platform.OS === 'android') {
+      await startRingingWithNotification(call);
+    }
+    if (Platform.OS === 'ios') {
+      await startRingingWithCallKit(call);
+    }
+  },
 });
 
 export const Stack = createNativeStackNavigator();
