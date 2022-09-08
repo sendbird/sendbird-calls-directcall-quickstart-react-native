@@ -34,12 +34,21 @@ const DirectCallVideoContentView: FC<CallStatusProps> = ({ call, status }) => {
   return (
     <View style={{ flex: 1 }}>
       <DirectCallVideoView
+        mirror={false}
+        resizeMode={'cover'}
         viewType={'remote'}
         callId={call.callId}
-        style={[StyleSheet.absoluteFillObject, { backgroundColor: 'black' }]}
+        style={StyleSheet.absoluteFill}
       />
       <Animated.View style={{ left, top, width: viewWidth, height: viewHeight, backgroundColor: 'black' }}>
-        <DirectCallVideoView viewType={'local'} callId={call.callId} android_zOrderMediaOverlay />
+        <DirectCallVideoView
+          mirror={true}
+          resizeMode={'cover'}
+          viewType={'local'}
+          callId={call.callId}
+          android_zOrderMediaOverlay
+          style={StyleSheet.absoluteFill}
+        />
       </Animated.View>
     </View>
   );
