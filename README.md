@@ -251,15 +251,15 @@ implement Delegate methods to `AppDelegate.m`
 
 > 0. voip notification wake your app
 > 1. [Native] App started  >> **DO NOT CALL [RNVoipPushNotificationManager voipRegistration] on launch in AppDelegate, it will trigger didReceiveIncomingPushWithPayload before sdk initializing**
-> 3. [JS] JS bridge created and your React-Native app is mounted
-> 4. [JS] run SendbirdCalls.initialize()
-> 5. [JS] set SendbirdCalls.setListener({onRinging})
-> 6. [JS] set RNCallKeep.addListener(...)
-> 7. [JS] run RNVoipPushNotification.registerVoipToken() -> it will trigger step 8
-> 8. [Native] didReceiveIncomingPushWithPayload called -> it will trigger step 9
-> 9. [Native] [SBCSendBirdCall didReceiveIncomingPushWith] called >> it will trigger onRinging event
-> 10. [Native] report to CallKit
-> 11. [JS] onRinging listener called
+> 2. [JS] JS bridge created and your React-Native app is mounted
+> 3. [JS] run SendbirdCalls.initialize()
+> 4. [JS] set SendbirdCalls.setListener({onRinging})
+> 5. [JS] set RNCallKeep.addListener(...)
+> 6. [JS] run RNVoipPushNotification.registerVoipToken() -> it will trigger step 7
+> 7. [Native] didReceiveIncomingPushWithPayload called -> it will trigger step 8
+> 8. [Native] [SBCSendBirdCall didReceiveIncomingPushWith] called >> it will trigger onRinging event
+> 9. [Native] report to CallKit
+> 10. [JS] onRinging listener called
 
 #### Remote Notification (APNs)
 
