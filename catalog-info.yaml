@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sendbird-calls-directcall-quickstart-react-native
+  description: Calls direct call quickstart for React-Native
+  annotations:
+    github.com/project-slug: sendbird-calls-directcall-quickstart-react-native
+spec:
+  type: library
+  lifecycle: production
+  owner: dep-client-platform
+  system: sendbird-calls
