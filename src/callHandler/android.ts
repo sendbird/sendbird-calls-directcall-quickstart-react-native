@@ -32,7 +32,7 @@ export async function setNotificationForegroundService() {
       return;
     }
 
-    const callString = detail.notification.data.call;
+    const callString = detail.notification.data.call as string;
     const callProps: DirectCallProperties = JSON.parse(callString);
 
     const directCall = await SendbirdCalls.getDirectCall(callProps.callId);
@@ -78,6 +78,7 @@ export async function startRingingWithNotification(call: DirectCallProperties) {
     title: `${callType} Call from ${call.remoteUser?.nickname ?? 'Unknown'}`,
     data: { call: JSON.stringify(call) },
     android: {
+      ongoing: true,
       asForegroundService: true,
       channelId: NOTIFICATION_CHANNEL_ID,
       actions: [
@@ -95,6 +96,7 @@ export async function startRingingWithNotification(call: DirectCallProperties) {
         title: `${callType} Call with ${directCall.remoteUser?.nickname ?? 'Unknown'}`,
         data: { call: JSON.stringify(call) },
         android: {
+          ongoing: true,
           asForegroundService: true,
           channelId: NOTIFICATION_CHANNEL_ID,
           actions: [{ title: 'End', pressAction: { id: 'decline' } }],
