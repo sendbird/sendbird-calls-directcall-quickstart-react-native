@@ -81,6 +81,32 @@ SendbirdCalls.initialize('SAMPLE_APP_ID');
 
 ## Making your first call
 
+### Register push tokens
+
+#### Android
+FCM Push Notification enables receiving calls even when the app is in the background or in the terminated state.
+
+To make and receive calls, authenticate the user with Sendbird server with the `authenticate()` method and register a FCM push token to Sendbird server.
+
+You can register a VoIP push token (specific, the current user’s) by passing it as an argument to a parameter either in the `authenticate()` method during authentication, or in the `registerPushToken()` method after completing the authentication.
+
+Furthermore, a valid FCM credential(Server Key) needs to be registered on the Sendbird Dashboard which you can do so on Add certificate under Application > Settings > Calls > Notifications.
+
+**More about server key** <br/>
+For more details about generating server key, refer to [How to Generate a FCM Server Key for Push Notification](https://sendbird.com/docs/calls/v1/android/guides/notifications).
+
+#### iOS
+VoIP Push Notification enables receiving calls even when the app is in the background or in the terminated state.
+
+To make and receive calls, authenticate the user with Sendbird server with the `authenticate()` method and register a VoIP push token to Sendbird server.
+
+You can register a VoIP push token (specific, the current user’s) by passing it as an argument to a parameter either in the `authenticate()` method during authentication, or in the `ios_registerVoIPPushToken()` method after completing the authentication.
+
+Furthermore, a valid VoIP Services certificate or Apple Push Notification Service certificate also needs to be registered on the Sendbird Dashboard which you can do so on Add certificate under Application > Settings > Calls > Notifications.
+
+**More about certificates** <br/>
+For more details about generating certificates, refer to [How to Generate a Certificate for VoIP Push Notification](https://github.com/sendbird/guidelines-ios/tree/master/How%20to%20generate%20iOS%20certificate).
+
 ### How to make a call
 
 1. Log in to the sample app on the primary device with the user ID set as the `caller`.
