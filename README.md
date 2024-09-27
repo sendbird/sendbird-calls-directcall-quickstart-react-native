@@ -289,7 +289,10 @@ implement Delegate methods to `AppDelegate.m`
 
 #### Remote Notification (APNs)
 
-implement `didReceiveRemoteNotification` to `AppDelegate.m`
+Implement `didReceiveRemoteNotification` to `AppDelegate.m`
+
+> [!NOTE]
+> By default, application(_:didReceiveRemoteNotification:fetchCompletionHandler:) delegate method isn’t called if the client app is in the background or closed. When a remote push notification is delivered to the mobile device, the notification will show as a banner and won’t trigger the delegate method while the app is in the background. If the client app is closed, the payload will be delivered when the user responds to the notification by tapping on it. However, if the client app is in the foreground, the notification will trigger the delegate method immediately.
 
 ```objc
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
