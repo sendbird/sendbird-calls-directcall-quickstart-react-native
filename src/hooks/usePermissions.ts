@@ -27,6 +27,10 @@ export const usePermissions = (perms: Permission[]) => {
   const [state, setState] = useState<'pending' | 'granted' | 'rejected'>('pending');
   useEffect(() => {
     const checkAndRequest = async () => {
+      if (Platform.OS === 'android') {
+        await Permissions.requestNotifications(['alert']);
+      }
+
       const checkResult = await Permissions.checkMultiple(perms);
       const alreadyGranted = nativePermissionGranted(checkResult);
       if (alreadyGranted) {
