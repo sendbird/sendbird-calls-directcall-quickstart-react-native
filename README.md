@@ -21,11 +21,11 @@ This section outlines the prerequsites for building a sample app using Sendbird 
 
 The minimum requirements for Sendbird Calls Quickstart for React-Native are as follows:
 
-- React-Native 0.60+
-- yarn v3.6.4
-- Xcode
+- React-Native 0.65.0+
+- yarn 3.6.4
+- Xcode 15.0+
 - Android Studio
-- Physical device (Android 21+, iOS 11+)
+- Physical device (Android 21+, iOS 12+)
 - [Sendbird Calls SDK for iOS](https://github.com/sendbird/sendbird-calls-ios)
 - [Sendbird Calls SDK for Android](https://github.com/sendbird/sendbird-calls-android)
 
