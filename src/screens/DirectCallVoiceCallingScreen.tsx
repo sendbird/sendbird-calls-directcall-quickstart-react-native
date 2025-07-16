@@ -6,10 +6,13 @@ import { useDirectCall } from '../hooks/useDirectCall';
 import type { DirectRoutes } from '../navigations/routes';
 import { useDirectNavigation } from '../navigations/useDirectNavigation';
 import Palette from '../styles/palette';
+import { CALL_PERMISSIONS, usePermissions } from '../hooks/usePermissions.ts';
 
 const DirectCallVoiceCallingScreen = () => {
   const { route, navigation } = useDirectNavigation<DirectRoutes.VOICE_CALLING>();
   const { call, status, currentAudioDeviceIOS } = useDirectCall(route.params.callId);
+
+  usePermissions(CALL_PERMISSIONS);
 
   useEffect(() => {
     if (status === 'ended') {

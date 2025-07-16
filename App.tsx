@@ -12,7 +12,6 @@ import {
 } from './src/callHandler/android';
 import { setupCallKit, startRingingWithCallKit } from './src/callHandler/ios';
 import { AuthProvider, useAuthContext } from './src/contexts/AuthContext';
-import { CALL_PERMISSIONS, usePermissions } from './src/hooks/usePermissions';
 import AuthManager from './src/libs/AuthManager';
 import CallHistoryManager from './src/libs/CallHistoryManager';
 import { navigationRef } from './src/libs/StaticNavigation';
@@ -85,7 +84,6 @@ SendbirdCalls.setListener({
 export const Stack = createNativeStackNavigator();
 
 const App = () => {
-  usePermissions(CALL_PERMISSIONS);
 
   return (
     <AuthProvider>
